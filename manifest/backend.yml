@@ -11,7 +11,7 @@ spec:
     matchLabels:
       app: node-demo
       env: dev
-  replicas: 5
+  replicas: 6
   template:
     metadata:
       labels:
