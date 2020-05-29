@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 //abcd
-app.get('/', (req, res) => res.send('Hello World! This is a huge step, this his V3!!!'));
+app.get('/', (req, res) => res.send('Hello World! I quit if it works'));
 
 const server = app.listen(3000, () => {
     const host = server.address().address;

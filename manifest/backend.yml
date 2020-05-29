@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-demo
-  namespace: default
+  name: demoapp
+  namespace: demo-service
   labels:
-    app: node-demo
+    app: demoapp
     env: dev
 spec:
   selector:
     matchLabels:
-      app: node-demo
+      app: demoapp
       env: dev
   replicas: 6
   template:
     metadata:
       labels:
-        app: node-demo
+        app: demoapp
         env: dev
     spec:
       containers:
-      - name: node-demo
+      - name: demoapp
         image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo:v3
         resources:
           requests:
@@ -30,19 +30,21 @@ spec:
             memory: 200Mi
         ports:
         - containerPort: 3000
-          name: node-demo-port
+          name: demoapp-port
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-demo-service
+  name: demoapp
+  namespace: demo-service
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
   ports:
     - port: 80
-      targetPort: node-demo-port
+      targetPort: demoapp-port
       protocol: TCP
   selector:
-    app: node-demo
+    app: demoapp
   type: LoadBalancer
+
