@@ -4,7 +4,12 @@ const app = express();
 app.get('/', (req, res) => {
     res.json({
         message: "All good!",
-        env: process.env
+        someEnvVariables: {
+            database: {
+                host: process.env.DATABASE_HOST,
+                user: process.env.DATABASE_USERNAME
+            }
+        }
     })
 });
 
