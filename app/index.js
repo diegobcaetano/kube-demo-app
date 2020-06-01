@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
 //abcd
-app.get('/', (req, res) => res.send('Version 1.0 is ready!'));
+app.get('/', (req, res) => {
+    res.json({
+        message: "All good!",
+        env: process.env
+    })
+});
 
 const server = app.listen(3000, () => {
     const host = server.address().address;

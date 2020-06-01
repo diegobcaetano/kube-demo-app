@@ -1,0 +1,40 @@
+version: 0.2
+
+env:
+  variables:
+    SSM_PARAMERTERS_PATH: "/core-apis/kubedemoapp"
+
+phases: 
+  pre_build: 
+    commands: 
+    - apt install jq
+    - aws ssm get-parameters-by-path --path $SSM_PARAMERTERS_PATH > parameters.json
+    - eval "$(aws ssm get-parameters-by-path --path $SSM_PARAMERTERS_PATH | jq -r '.Parameters[] | "export $(basename " + .Name + ")" + "=" + .Value')"
+    - docker version
+    - echo Logging in to Amazon ECR.... 
+    - aws --version
+    - $(aws ecr get-login --no-include-email --region us-east-2)
+    - export COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+    - export IMAGE_TAG=${COMMIT_HASH:=latest}
+    - export REPOSITORY_URI=787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo
+    - echo $COMMIT_HASH
+  build: 
+    commands: 
+    - echo Build started on `date` 
+    - echo Building the Docker image... 
+    # update the following line with the name of your own ECR repository
+    - docker build -t $REPOSITORY_URI:latest .
+    # update the following line with the URI of your own ECR repository (view the Push Commands in the console)
+    - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG 
+  post_build: 
+    commands: 
+    - echo Build completed on `date` 
+    - echo pushing to repo
+    # update the following line with the URI of your own ECR repository
+    - docker push $REPOSITORY_URI:$IMAGE_TAG
+    - echo Writing image definitions file... 
+    #- printf '[{"ImageURI":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+    - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+artifacts:
+  files:
+    - imageDetail.json
