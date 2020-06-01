@@ -1,17 +1,20 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
-  name: demoapp
-  namespace: demo-service
+  annotations:
+    strategy.spinnaker.io/max-version-history: '2'
+    traffic.spinnaker.io/load-balancers: '["service demoapp"]'
   labels:
     app: demoapp
     env: dev
+  name: demoapp
+  namespace: demo-service
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: demoapp
       env: dev
-  replicas: 3
   template:
     metadata:
       labels:
@@ -20,7 +23,7 @@ spec:
     spec:
       containers:
       - name: demoapp
-        image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo
+        image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo:${parameters.imageTag}
         resources:
           requests:
             cpu: 500m
@@ -31,20 +34,3 @@ spec:
         ports:
         - containerPort: 3000
           name: demoapp-port
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: demoapp
-  namespace: demo-service
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
-spec:
-  ports:
-    - port: 80
-      targetPort: demoapp-port
-      protocol: TCP
-  selector:
-    app: demoapp
-  type: LoadBalancer
-
