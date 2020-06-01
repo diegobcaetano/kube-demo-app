@@ -3,10 +3,10 @@ const app = express();
 //abcd
 app.get('/', (req, res) => {
     res.json({
-        message: "All good!",
+        message: "All good! v2",
         someEnvVariables: {
             database: {
-                host: process.env.DATABASE_HOST,
+                host: process.env.DATABASE_HOSTNAME,
                 user: process.env.DATABASE_USERNAME
             }
         }
