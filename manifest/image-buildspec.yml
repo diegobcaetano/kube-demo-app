@@ -8,8 +8,8 @@ phases:
   pre_build: 
     commands: 
     - apt install jq
-    - aws ssm get-parameters-by-path --path $SSM_PARAMERTERS_PATH > parameters.json
     - eval "$(aws ssm get-parameters-by-path --path $SSM_PARAMERTERS_PATH | jq -r '.Parameters[] | "export $(basename " + .Name + ")" + "=" + .Value')"
+    - echo $database_host
     - docker version
     - echo Logging in to Amazon ECR.... 
     - aws --version
