@@ -5,6 +5,7 @@ app.get('/', (req, res) => {
     res.json({
         message: "All good! v2",
         someEnvVariables: {
+            xpto: process.env.XPTO,
             database: {
                 host: process.env.DATABASE_HOSTNAME,
                 user: process.env.DATABASE_USERNAME
