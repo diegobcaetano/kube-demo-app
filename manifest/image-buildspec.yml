@@ -1,8 +1,6 @@
 version: 0.2
 
 env:
-  variables:
-    SSM_PARAMERTERS_PATH: "/core-apis/kubedemoapp"
   parameter-store:
     DATABASE_HOSTNAME: /core-apis/kubedemoapp/database_host
     DATABASE_USERNAME: /core-apis/kubedemoapp/database_username
@@ -17,12 +15,10 @@ phases:
     - export COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     - export IMAGE_TAG=${COMMIT_HASH:=latest}
     - export REPOSITORY_URI=787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo
-    - echo $COMMIT_HASH
   build: 
     commands: 
     - echo Build started on `date` 
     - echo Building the Docker image... 
-    - echo $DATABASE_HOSTNAME
     - > 
       docker build 
       -t $REPOSITORY_URI:latest . 
