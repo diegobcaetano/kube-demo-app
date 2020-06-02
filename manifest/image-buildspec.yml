@@ -27,8 +27,8 @@ phases:
     - > 
       docker build 
       -t $REPOSITORY_URI:latest . 
-      --build-arg DATABASE_HOSTNAME=$DATABASE_HOSTNAME
-      --build-arg DATABASE_USERNAME=$DATABASE_USERNAME
+      --build-arg DATABASE_HOSTNAME=aaaaaaaa
+      --build-arg DATABASE_USERNAME=bbbbbb
     # update the following line with the URI of your own ECR repository (view the Push Commands in the console)
     - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG 
   post_build: 
