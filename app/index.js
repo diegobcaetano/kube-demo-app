@@ -3,7 +3,7 @@ const app = express();
 //abcd
 app.get('/', (req, res) => {
     res.json({
-        message: "We are good to go! 1.0",
+        message: "We are good to go! 1.0.0",
         someEnvVariables: {
             database: {
                 host: process.env.DATABASE_HOSTNAME,
