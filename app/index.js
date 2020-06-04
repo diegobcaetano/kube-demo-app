@@ -3,7 +3,7 @@ const app = express();
 //abcd
 app.get('/', (req, res) => {
     res.json({
-        message: "Team Core APIs",
+        message: "This image please",
         someEnvVariables: {
             database: {
                 host: process.env.DATABASE_HOSTNAME,
