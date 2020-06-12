@@ -4,7 +4,7 @@ const rp = require('request-promise');
 
 app.get("/", async (req, res) => {
   try {
-    const seller = JSON.parse(await rp(`http://${process.env.SELLER_SERVICE}`));
+    const seller = await rp(`http://${process.env.SELLER_SERVICE}`);
     console.log(seller);
   } catch (e) {
       console.log(e);
@@ -16,6 +16,7 @@ app.get("/", async (req, res) => {
         host: process.env.DATABASE_HOSTNAME,
         user: process.env.DATABASE_USERNAME,
       },
+      seller: JSON.parse(seller)
     },
   });
 });
