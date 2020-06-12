@@ -6,8 +6,16 @@ app.get("/", async (req, res) => {
   let seller = null;
   let taxonomy = null;
   try {
-    seller = await rp(`http://${process.env.SELLER_SERVICE}`);
-    taxonomy = await rp(`http://${process.env.TAXONOMY_SERVICE}`)
+    seller = await rp({
+      method: 'GET',
+      uri: `http://${process.env.SELLER_SERVICE}`,
+      headers: req.headers
+    });
+    taxonomy = await rp({
+      method: 'GET',
+      uri: `http://${process.env.TAXONOMY_SERVICE}`,
+      headers: req.headers
+    })
   } catch (e) {
       console.log(e);
   }
