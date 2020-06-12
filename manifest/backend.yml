@@ -23,7 +23,7 @@ spec:
         image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo
         env:
           - name: SELLER_SERVICE
-            value: kube-demo-service
+            value: kube-demo-service.demo-service
         resources:
           requests:
             cpu: 100m

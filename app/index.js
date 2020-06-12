@@ -4,7 +4,7 @@ const rp = require('request-promise');
 
 app.get("/", async (req, res) => {
   try {
-    const seller = await rp("http://kube-demo-seller.demo-service");
+    const seller = JSON.parse(await rp(`http://${process.env.SELLER_SERVICE}`));
     console.log(seller);
   } catch (e) {
       console.log(e);
