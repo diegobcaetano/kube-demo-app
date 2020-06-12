@@ -4,7 +4,7 @@ const axios = require('axios');
 
 app.get("/", async (req, res) => {
     try {
-        const seller = await axios.get("kube-demo-seller");
+        const seller = await axios.get("kube-demo-seller.demo-service.svc.cluster.local");
         console.log(seller.data);
     } catch(e) {
         console.log(e);
