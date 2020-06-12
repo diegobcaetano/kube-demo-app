@@ -3,9 +3,9 @@ const app = express();
 const rp = require('request-promise');
 
 app.get("/", async (req, res) => {
+  let seller = null;
   try {
-    const seller = await rp(`http://${process.env.SELLER_SERVICE}`);
-    console.log(seller);
+    seller = await rp(`http://${process.env.SELLER_SERVICE}`);
   } catch (e) {
       console.log(e);
   }
