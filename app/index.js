@@ -3,8 +3,12 @@ const app = express();
 const axios = require('axios');
 
 app.get("/", async (req, res) => {
-  const seller = await axios.get("kube-demo-seller");
-  console.log(seller.data);
+    try {
+        const seller = await axios.get("kube-demo-seller");
+        console.log(seller.data);
+    } catch(e) {
+        console.log(e);
+    }
   res.json({
     message: "Let's link the containers!!",
     someEnvVariables: {
