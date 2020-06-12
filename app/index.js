@@ -4,13 +4,13 @@ const axios = require('axios');
 
 app.get("/", async (req, res) => {
     try {
-        const seller = await axios.get("kube-demo-seller.demo-service.svc.cluster.local");
+        const seller = await axios.get("kube-demo-seller.demo-service");
         console.log(seller.data);
     } catch(e) {
         console.log(e);
     }
   res.json({
-    message: "Let's link the containers!!",
+    message: "Let's link the containers!! 2",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,
