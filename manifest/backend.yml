@@ -11,7 +11,7 @@ spec:
     matchLabels:
       app: demoapp
       env: dev
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
@@ -21,13 +21,16 @@ spec:
       containers:
       - name: demoapp
         image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo
+        env:
+          - name: SELLER_SERVICE
+            value: kube-demo-service
         resources:
-          # requests:
-          #   cpu: 500m
-          #   memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
           limits:
-            cpu: 1000m
-            memory: 200Mi
+            cpu: 500m
+            memory: 256Mi
         ports:
         - containerPort: 3000
           name: demoapp-port
