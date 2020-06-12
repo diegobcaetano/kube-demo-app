@@ -4,8 +4,10 @@ const rp = require('request-promise');
 
 app.get("/", async (req, res) => {
   let seller = null;
+  let taxonomy = null;
   try {
     seller = await rp(`http://${process.env.SELLER_SERVICE}`);
+    taxonomy = await rp(`http://${process.env.TAXONOMY_SERVICE}`)
   } catch (e) {
       console.log(e);
   }
@@ -16,6 +18,7 @@ app.get("/", async (req, res) => {
         host: process.env.DATABASE_HOSTNAME,
         user: process.env.DATABASE_USERNAME,
       },
+      taxonomy: JSON.parse(taxonomy),
       seller: JSON.parse(seller)
     },
   });

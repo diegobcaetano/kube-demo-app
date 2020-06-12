@@ -24,6 +24,8 @@ spec:
         env:
           - name: SELLER_SERVICE
             value: kube-demo-seller.demo-service
+          - name: TAXONOMY_SERVICE
+            value: kube-demo-taxonomy.demo-service
         resources:
           requests:
             cpu: 100m
