@@ -1,24 +1,16 @@
 const express = require("express");
 const app = express();
-const request = require("request");
-const axios = require("axios");
+const rp = require('request-promise');
 
 app.get("/", async (req, res) => {
   try {
-    request("http://kube-demo-seller.demo-service", function (error, response, body) {
-      console.error("error:", error); // Print the error if one occurred
-      console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
-      console.log("body:", body); // Print the HTML for the Google homepage.
-    });
-  } catch (e) {}
-//   try {
-//     const seller = await axios.get("kube-demo-seller.demo-service");
-//     console.log(seller.data);
-//   } catch (e) {
-//     console.log(e);
-//   }
+    const seller = await rp("http://kube-demo-seller.demo-service");
+    console.log(seller);
+  } catch (e) {
+      console.log(e);
+  }
   res.json({
-    message: "Let's link the containers!! 2",
+    message: "Let's link the containers!! 3",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,
