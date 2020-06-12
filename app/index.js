@@ -20,7 +20,7 @@ app.get("/", async (req, res) => {
   });
 });
 
-const server = app.listen(3000, () => {
+const server = app.listen(3000, '0.0.0.0', () => {
   const host = server.address().address;
   const port = server.address().port;
 
