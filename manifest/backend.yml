@@ -47,6 +47,7 @@ metadata:
 spec:
   ports:
     - port: 80
+      name: http
       targetPort: demoapp-port
       protocol: TCP
   selector:

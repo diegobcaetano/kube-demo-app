@@ -30,4 +30,4 @@ spec:
         exact: /product
     route:
     - destination:
-        host: demoapp
+        host: demoapp.demo-service.svc.cluster.local
