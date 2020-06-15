@@ -5,22 +5,22 @@ const rp = require('request-promise');
 app.get("/", async (req, res) => {
   let seller = null;
   let taxonomy = null;
-  // try {
-  //   seller = await rp({
-  //     method: 'GET',
-  //     uri: `http://${process.env.SELLER_SERVICE}`,
-  //     headers: req.headers
-  //   });
-  //   taxonomy = await rp({
-  //     method: 'GET',
-  //     uri: `http://${process.env.TAXONOMY_SERVICE}`,
-  //     headers: req.headers
-  //   })
-  // } catch (e) {
-  //     console.log(e);
-  // }
+  try {
+    taxonomy = await rp({
+      method: 'GET',
+      uri: `http://${process.env.TAXONOMY_SERVICE}`,
+      headers: req.headers
+    });
+    seller = await rp({
+      method: 'GET',
+      uri: `http://${process.env.SELLER_SERVICE}`,
+      headers: req.headers
+    });
+  } catch (e) {
+      console.log(e);
+  }
   res.json({
-    message: "Let's link the containers!! 3",
+    message: "Let's link the containers!! 4",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,

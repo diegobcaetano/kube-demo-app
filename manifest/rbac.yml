@@ -1,0 +1,27 @@
+apiVersion: "rbac.istio.io/v1alpha1"
+kind: ServiceRole
+metadata:
+  name: service-viewer
+  namespace: demo-service
+spec:
+  rules:
+  - services: ["*"]
+    methods: ["GET"]
+    constraints:
+    - key: "destination.labels[app]"
+      values: ["demoapp", "kube-demo-seller", "kube-demo-taxonomy", "kube-demo-buybox"]
+---
+apiVersion: "rbac.istio.io/v1alpha1"
+kind: ServiceRoleBinding
+metadata:
+  name: bind-service-viewer
+  namespace: demo-service
+spec:
+  subjects:
+  - properties:
+      source.namespace: "istio-system"
+  - properties:
+      source.namespace: "demo-service"
+  roleRef:
+    kind: ServiceRole
+    name: "service-viewer"

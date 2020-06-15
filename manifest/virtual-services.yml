@@ -2,19 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   namespace: demo-service
-  name: demoapp
-spec:
-  hosts:
-  - demoapp
-  http:
-  - route:
-    - destination:
-        host: demoapp
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  namespace: demo-service
   name: kube-demo-seller
 spec:
   hosts:

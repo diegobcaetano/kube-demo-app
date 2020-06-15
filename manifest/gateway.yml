@@ -28,6 +28,8 @@ spec:
   - match:
     - uri:
         exact: /product
+    rewrite:
+      uri: /
     route:
     - destination:
         host: demoapp.demo-service.svc.cluster.local
