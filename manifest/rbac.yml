@@ -2,7 +2,6 @@ apiVersion: "rbac.istio.io/v1alpha1"
 kind: ServiceRole
 metadata:
   name: service-viewer
-  namespace: demo-service
 spec:
   rules:
   - services: ["*"]
@@ -15,7 +14,6 @@ apiVersion: "rbac.istio.io/v1alpha1"
 kind: ServiceRoleBinding
 metadata:
   name: bind-service-viewer
-  namespace: demo-service
 spec:
   subjects:
   - properties:
@@ -33,7 +31,7 @@ metadata:
 spec:
   mode: 'ON_WITH_INCLUSION'
   inclusion:
-    namespaces: ["default", "demo-service"]
+    namespaces: ["default"]
 ---
 # Configuration for logentry instances
 apiVersion: "config.istio.io/v1alpha2"
