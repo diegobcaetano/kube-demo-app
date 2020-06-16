@@ -23,9 +23,9 @@ spec:
         image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo:2532952
         env:
           - name: SELLER_SERVICE
-            value: kube-demo-seller.demo-service
+            value: kube-demo-seller.demo-service.svc.cluster.local
           - name: TAXONOMY_SERVICE
-            value: kube-demo-taxonomy.demo-service
+            value: kube-demo-taxonomy.demo-service.svc.cluster.local
         resources:
           requests:
             cpu: 100m
