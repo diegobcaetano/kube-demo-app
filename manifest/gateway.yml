@@ -21,9 +21,9 @@ metadata:
   namespace: demo-service
 spec:
   hosts:
-  - "*"
+  - "a6ebecdc1d3e647a6b477d8b9068ffb9-1132922116.us-east-2.elb.amazonaws.com"
   gateways:
-  - demo-service-gateway
+  - "demo-service/demo-service-gateway"
   http:
   - match:
     - uri:
