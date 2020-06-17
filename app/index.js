@@ -14,6 +14,7 @@ app.get("/", async (req, res) => {
     'x-b3-sampled': req.headers['x-b3-sampled'],
     'x-b3-flags': req.headers['x-b3-flags'],
     'b3': req.headers['b3'],
+    'x-version-taxonomy': req.headers['x-version-taxonomy']
   }
 
   try {
