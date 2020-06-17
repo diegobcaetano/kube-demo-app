@@ -21,7 +21,7 @@ metadata:
   namespace: default
 spec:
   hosts:
-  - "a338e3f50f40e4f04b71543a9a4bf96b-2092078052.us-east-2.elb.amazonaws.com"
+  - "a5ac7d3e96e444a95befa229e2e9d6c3-153647902.us-east-2.elb.amazonaws.com"
   gateways:
   - "default/demo-service-gateway"
   http:

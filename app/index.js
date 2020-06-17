@@ -30,6 +30,7 @@ app.get("/", async (req, res) => {
   } catch (e) {
       console.log(e);
   }
+  console.log("some info coming from the demo app")
   res.json({
     message: "Istio GO with headers",
     someEnvVariables: {
