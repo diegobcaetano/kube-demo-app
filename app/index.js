@@ -5,22 +5,33 @@ const rp = require('request-promise');
 app.get("/", async (req, res) => {
   let seller = null;
   let taxonomy = null;
+
+  const headers = {
+    'x-request-id': req.headers['x-request-id'],
+    'x-b3-traceid': req.headers['x-b3-traceid'],
+    'x-b3-spanid': req.headers['x-b3-spanid'],
+    'x-b3-parentspanid': req.headers['x-b3-parentspanid'],
+    'x-b3-sampled': req.headers['x-b3-sampled'],
+    'x-b3-flags': req.headers['x-b3-flags'],
+    'b3': req.headers['b3'],
+  }
+
   try {
     taxonomy = await rp({
       method: 'GET',
-      uri: `http://${process.env.TAXONOMY_SERVICE}`
-      // headers: req.headers
+      uri: `http://${process.env.TAXONOMY_SERVICE}`,
+      headers
     });
     seller = await rp({
       method: 'GET',
-      uri: `http://${process.env.SELLER_SERVICE}`
-      // headers: req.headers
+      uri: `http://${process.env.SELLER_SERVICE}`,
+      headers
     });
   } catch (e) {
       console.log(e);
   }
   res.json({
-    message: "Istio GO",
+    message: "Istio GO with headers",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,

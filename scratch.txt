@@ -1,0 +1,39 @@
+  "cbid": "MM6EF1YH59",
+        "total": 649.9,
+        "totalInCash": 617.4,
+        "totalProducts": 649.9,
+        "totalProductsInCash": 617.4,
+        "totalProductsInCashDiscount": 32.5,
+        "totalFreight": null,
+        "totalExtendedWarranty": 0,
+        "totalDiscount": 0,
+        "creditAssigned": 0,
+
+
+
+         "total": 1546.92,
+            "totalInCash": 1481.92,
+
+            {
+                            "1": {
+                                "value": 1514.42,
+                                "total": 1514.42,
+                                "discount": 32.5,
+                                "discountInstallment": 0.1,
+                                "discountPercentage": 2.1,
+                                "interest": 0,
+                                "number": 1
+                            }
+
+              "total": 764.84,
+            "totalInCash": 732.34,
+
+             "1": {
+                                "value": 732.34,
+                                "total": 732.34,
+                                "discount": 32.5,
+                                "discountInstallment": 0.1,
+                                "discountPercentage": 4.2,
+                                "interest": 0,
+                                "number": 1
+                            },
