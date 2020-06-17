@@ -8,7 +8,7 @@ app.get("/", async (req, res) => {
   try {
     taxonomy = await rp({
       method: 'GET',
-      uri: `http://${process.env.TAXONOMY_SERVICE}`
+      uri: `http://${process.env.TAXONOMY_SERVICE}:8080`
       // headers: req.headers
     });
     // seller = await rp({
