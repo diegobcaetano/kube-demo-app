@@ -11,11 +11,11 @@ app.get("/", async (req, res) => {
       uri: `http://${process.env.TAXONOMY_SERVICE}:8080`
       // headers: req.headers
     });
-    // seller = await rp({
-    //   method: 'GET',
-    //   uri: `http://${process.env.SELLER_SERVICE}`,
-    //   headers: req.headers
-    // });
+    seller = await rp({
+      method: 'GET',
+      uri: `http://${process.env.SELLER_SERVICE}:8081`,
+      headers: req.headers
+    });
   } catch (e) {
       console.log(e);
   }
