@@ -20,7 +20,7 @@ app.get("/", async (req, res) => {
       console.log(e);
   }
   res.json({
-    message: "Let's link the containers!! 4",
+    message: "Let's link the containers!! 4=5",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,
