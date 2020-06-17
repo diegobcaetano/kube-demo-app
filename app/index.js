@@ -8,7 +8,7 @@ app.get("/", async (req, res) => {
   try {
     taxonomy = await rp({
       method: 'GET',
-      uri: `http://${process.env.TAXONOMY_SERVICE}:8080`
+      uri: `http://${process.env.TAXONOMY_SERVICE}`
       // headers: req.headers
     });
     seller = await rp({
@@ -20,7 +20,7 @@ app.get("/", async (req, res) => {
       console.log(e);
   }
   res.json({
-    message: "Let's link the containers!! 4=5",
+    message: "Istio GO",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,
