@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demoapp
+  namespace: default
   labels:
     app: demoapp
     env: dev
@@ -19,10 +20,10 @@ spec:
     spec:
       containers:
       - name: demoapp
-        image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo
+        image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo:fa60eaf
         env:
           - name: SELLER_SERVICE
-            value: kube-demo-seller.default.svc.cluster.local]
+            value: kube-demo-seller.default.svc.cluster.local
           - name: TAXONOMY_SERVICE
             value: kube-demo-taxonomy.default.svc.cluster.local
         resources:
@@ -40,6 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demoapp
+  namespace: default
 spec:
   ports:
     - port: 80
@@ -52,6 +54,7 @@ apiVersion: autoscaling.k8s.io/v1beta2
 kind: VerticalPodAutoscaler
 metadata:
   name: demoapp-vpa
+  namespace: default
 spec:
   targetRef:
     apiVersion: apps/v1
