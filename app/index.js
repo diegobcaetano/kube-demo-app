@@ -13,7 +13,7 @@ app.get("/", async (req, res) => {
     });
     seller = await rp({
       method: 'GET',
-      uri: `http://${process.env.SELLER_SERVICE}:8081`
+      uri: `http://${process.env.SELLER_SERVICE}`
       // headers: req.headers
     });
   } catch (e) {
