@@ -3,6 +3,9 @@ const app = express();
 const rp = require('request-promise');
 
 app.get("/", async (req, res) => {
+
+  return res.status(502).json({fail: true});
+
   let seller = null;
   let taxonomy = null;
 
