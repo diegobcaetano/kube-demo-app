@@ -5,18 +5,18 @@ metadata:
   namespace: default
   labels:
     app: demoapp
-    env: dev
+    version: canary
 spec:
   selector:
     matchLabels:
       app: demoapp
-      env: dev
+      version: canary
   replicas: 2
   template:
     metadata:
       labels:
         app: demoapp
-        env: dev
+        version: canary
     spec:
       containers:
       - name: demoapp
@@ -36,38 +36,3 @@ spec:
         ports:
         - containerPort: 3000
           name: demoapp-port
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: demoapp
-  namespace: default
-spec:
-  ports:
-    - port: 80
-      name: http
-      targetPort: demoapp-port
-  selector:
-    app: demoapp
----
-apiVersion: autoscaling.k8s.io/v1beta2
-kind: VerticalPodAutoscaler
-metadata:
-  name: demoapp-vpa
-  namespace: default
-spec:
-  targetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: demoapp
-  resourcePolicy:
-    containerPolicies:
-      - containerName: '*'
-        minAllowed:
-          cpu: 100m
-          memory: 50Mi
-        maxAllowed:
-          cpu: 1
-          memory: 500Mi
-        controlledResources: ["cpu", "memory"]
-

@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp
+  namespace: default
+  labels:
+    app: demoapp
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      app: demoapp
+      version: v1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demoapp
+        version: v1
+    spec:
+      containers:
+      - name: demoapp
+        image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo:fd4df07
+        env:
+          - name: SELLER_SERVICE
+            value: kube-demo-seller.default.svc.cluster.local
+          - name: TAXONOMY_SERVICE
+            value: kube-demo-taxonomy.default.svc.cluster.local
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+        ports:
+        - containerPort: 3000
+          name: demoapp-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoapp
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      name: http
+      targetPort: demoapp-port
+  selector:
+    app: demoapp
+---
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: demoapp-vpa
+  namespace: default
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: demoapp
+  resourcePolicy:
+    containerPolicies:
+      - containerName: '*'
+        minAllowed:
+          cpu: 100m
+          memory: 50Mi
+        maxAllowed:
+          cpu: 1
+          memory: 500Mi
+        controlledResources: ["cpu", "memory"]
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: demoapp
+  namespace: default
+spec:
+  host: demoapp.default.svc.cluster.local
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: canary
+    labels:
+      version: canary

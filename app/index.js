@@ -33,7 +33,7 @@ app.get("/", async (req, res) => {
   }
   console.log("some info coming from the demo app")
   res.json({
-    message: "Istio GO with headers",
+    message: "Istio GO with headers aveee mae",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,
