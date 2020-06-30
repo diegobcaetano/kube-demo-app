@@ -4,7 +4,7 @@ const rp = require('request-promise');
 
 app.get("/", async (req, res) => {
 
-  return res.status(502).json({fail: true});
+  // return res.status(502).json({fail: true});
 
   let seller = null;
   let taxonomy = null;
