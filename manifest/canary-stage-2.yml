@@ -18,8 +18,8 @@ spec:
     - destination:
         host: demoapp.default.svc.cluster.local
         subset: v1
-      weight: 25
+      weight: 75
     - destination:
         host: demoapp.default.svc.cluster.local
         subset: canary
-      weight: 75
+      weight: 25
