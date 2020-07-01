@@ -2,9 +2,15 @@ const express = require("express");
 const app = express();
 const rp = require('request-promise');
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 app.get("/", async (req, res) => {
 
-  // return res.status(502).json({fail: true});
+  if(getRandomInt(4) == 2) {
+    return res.status(502).json({fail: true});
+  }
 
   let seller = null;
   let taxonomy = null;
