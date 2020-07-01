@@ -36,7 +36,7 @@ app.get("/", async (req, res) => {
   }
   console.log("some info coming from the demo app")
   res.json({
-    message: "Istio GO with headers aveee mae",
+    message: "Istio GO - Canary version",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,

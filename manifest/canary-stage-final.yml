@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: demo-service
+  namespace: default
+spec:
+  hosts:
+  - "a5ac7d3e96e444a95befa229e2e9d6c3-153647902.us-east-2.elb.amazonaws.com"
+  gateways:
+  - "default/demo-service-gateway"
+  http:
+  - match:
+    - uri:
+        exact: /product
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: demoapp.default.svc.cluster.local
+        subset: v1
+      weight: 100
