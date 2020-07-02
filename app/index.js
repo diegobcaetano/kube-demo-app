@@ -8,7 +8,7 @@ function getRandomInt(max) {
 
 app.get("/", async (req, res) => {
 
-  if(getRandomInt(6) == 2) {
+  if(getRandomInt(8) == 2) {
     return res.status(502).json({fail: true});
   }
 
