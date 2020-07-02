@@ -8,9 +8,9 @@ function getRandomInt(max) {
 
 app.get("/", async (req, res) => {
 
-  if(getRandomInt(8) == 2) {
-    return res.status(502).json({fail: true});
-  }
+  // if(getRandomInt(8) == 2) {
+  //   return res.status(502).json({fail: true});
+  // }
 
   let seller = null;
   let taxonomy = null;
@@ -42,7 +42,7 @@ app.get("/", async (req, res) => {
   }
   console.log("some info coming from the demo app")
   res.status(203).json({
-    message: "Istio GO - gogogo",
+    message: "Istio GO - all good now!",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,
