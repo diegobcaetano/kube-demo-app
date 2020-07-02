@@ -42,7 +42,7 @@ app.get("/", async (req, res) => {
   }
   console.log("some info coming from the demo app")
   res.status(203).json({
-    message: "Istio GO - eee",
+    message: "Istio GO - fff",
     someEnvVariables: {
       database: {
         host: process.env.DATABASE_HOSTNAME,
