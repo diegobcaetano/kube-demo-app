@@ -40,7 +40,7 @@ app.get("/", async (req, res) => {
   } catch (e) {
       console.log(e);
   }
-  console.log("some info coming from the demo app")
+  console.log("some info coming from the demo appwef")
   res.status(203).json({
     message: "Istio GO - all good now! aabbcc and good good? holly jesus aaabbbccbb",
     someEnvVariables: {
