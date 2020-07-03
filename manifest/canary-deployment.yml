@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: demoapp
-        image: '787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo:${imageTag}'
+        image: 787278094283.dkr.ecr.us-east-2.amazonaws.com/ca-node-demo
         env:
           - name: SELLER_SERVICE
             value: kube-demo-seller.default.svc.cluster.local
